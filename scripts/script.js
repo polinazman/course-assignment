@@ -1,3 +1,4 @@
+"use strict";
 // refer to question 1 before development starts for scope document
 // connect to this api https://api.magicthegathering.io/v1/cards
 
@@ -25,33 +26,35 @@ function fillPage(myObject) {
     var urlText = "card-specific.html?id=";
     myObject.cards.forEach(card => {
 
+        // if (card.imageUrl) {
+        var cards = document.getElementById("cards");
+
+        var outerDiv = document.createElement("div");
+        outerDiv.setAttribute("class", "col-sm-4");
+        cards.appendChild(outerDiv);
+
+        var innerDiv = document.createElement("div");
+        innerDiv.setAttribute("class", "card-container");
+        outerDiv.appendChild(innerDiv);
+
+        var h4 = document.createElement("h4");
+        h4.innerHTML = card.name;
+        innerDiv.appendChild(h4);
+
+        var img = document.createElement("img");
         if (card.imageUrl) {
-
-            var cards = document.getElementById("cards");
-
-            var outerDiv = document.createElement("div");
-            outerDiv.setAttribute("class", "col-sm-4");
-            cards.appendChild(outerDiv);
-
-            var innerDiv = document.createElement("div");
-            innerDiv.setAttribute("class", "card-container");
-            outerDiv.appendChild(innerDiv);
-
-            var h4 = document.createElement("h4");
-            h4.innerHTML = card.name;
-            innerDiv.appendChild(h4);
-
-            var img = document.createElement("img");
             img.setAttribute("src", card.imageUrl);
-            innerDiv.appendChild(img);
-
-            var a = document.createElement("a");
-            a.innerHTML = "View More";
-            a.setAttribute("src", urlText + card.multiverseid);
-            a.setAttribute("class", "btn btn-success");
-            innerDiv.appendChild(a);
-
+        } else {
+            img.setAttribute("src", "https://via.placeholder.com/223x310");
         }
+        innerDiv.appendChild(img);
+
+        var a = document.createElement("a");
+        a.innerHTML = "View More";
+        a.setAttribute("src", urlText + card.multiverseid);
+        a.setAttribute("class", "btn btn-success");
+        innerDiv.appendChild(a);
+        // }
     });
 }
 
@@ -60,13 +63,13 @@ document.getElementById("searchButton").onclick = searchBtn;
 function searchBtn() {
     var resultsArray = [];
     document.getElementById("cards").innerHTML = "";
-    searchInput = document.getElementById("search").value;
+    var searchInput = document.getElementById("search").value;
     run(null, searchInput);
 
-    if (searchInput === true) {
-        resultsArray.push(searchInput);
-        console.log(resultsArray);
-    } else {
-
-    }
+    // if (searchInput === true) {
+    //     resultsArray.push(searchInput);
+    //     console.log(resultsArray);
+    // } else {
+    //
+    // }
 }
