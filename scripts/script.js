@@ -57,7 +57,7 @@ function fillPage(myObject) {
 
         var a = document.createElement("a");
         a.innerHTML = "View More";
-        a.setAttribute("src", urlText + card.multiverseid);
+        a.setAttribute("href", urlText + card.multiverseid);
         a.setAttribute("class", "btn btn-success");
         innerDiv.appendChild(a);
     });
@@ -70,11 +70,4 @@ function searchBtn() {
     document.getElementById("cards").innerHTML = "";
     var searchInput = document.getElementById("search").value;
     run(null, searchInput);
-
-    // if (searchInput === true) {
-    //     resultsArray.push(searchInput);
-    //     console.log(resultsArray);
-    // } else {
-    //
-    // }
 }
