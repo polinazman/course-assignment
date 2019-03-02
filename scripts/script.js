@@ -4,16 +4,16 @@
 window.onload = run;
 
 function run(e, name) {
-    var requestURL = 'https://api.magicthegathering.io/v1/cards';
+    var requestURL = "https://api.magicthegathering.io/v1/cards";
 
     if (name) {
         requestURL = requestURL + "?name=\"" + name + "\"";
     }
 
     var request = new XMLHttpRequest();
-    request.open('GET', requestURL);
+    request.open("GET", requestURL);
 
-    request.responseType = 'json';
+    request.responseType = "json";
 
     request.send();
 
@@ -22,33 +22,33 @@ function run(e, name) {
 
 function fillPage(myObject) {
 
-    var urlText = 'card-specific.html?id=';
+    var urlText = "card-specific.html?id=";
     myObject.cards.forEach(card => {
 
         if (card.imageUrl) {
 
             var cards = document.getElementById("cards");
 
-            var outerDiv = document.createElement('div');
-            outerDiv.setAttribute('class', 'col-sm-4');
+            var outerDiv = document.createElement("div");
+            outerDiv.setAttribute("class", "col-sm-4");
             cards.appendChild(outerDiv);
 
-            var innerDiv = document.createElement('div');
-            innerDiv.setAttribute('class', 'card-container');
+            var innerDiv = document.createElement("div");
+            innerDiv.setAttribute("class", "card-container");
             outerDiv.appendChild(innerDiv);
 
-            var h4 = document.createElement('h4');
+            var h4 = document.createElement("h4");
             h4.innerHTML = card.name;
             innerDiv.appendChild(h4);
 
-            var img = document.createElement('img');
-            img.setAttribute('src', card.imageUrl);
+            var img = document.createElement("img");
+            img.setAttribute("src", card.imageUrl);
             innerDiv.appendChild(img);
 
-            var a = document.createElement('a');
+            var a = document.createElement("a");
             a.innerHTML = "View More";
-            a.setAttribute('src', urlText + card.multiverseid);
-            a.setAttribute('class', "btn btn-success");
+            a.setAttribute("src", urlText + card.multiverseid);
+            a.setAttribute("class", "btn btn-success");
             innerDiv.appendChild(a);
 
         }
@@ -57,16 +57,16 @@ function fillPage(myObject) {
 
 document.getElementById("searchButton").onclick = searchBtn;
 
-function searchBtn(){
+function searchBtn() {
     var resultsArray = [];
     document.getElementById("cards").innerHTML = "";
     searchInput = document.getElementById("search").value;
     run(null, searchInput);
 
     if (searchInput === true) {
-        resultsArray.push(searchInput);  
+        resultsArray.push(searchInput);
         console.log(resultsArray);
     } else {
-        
+
     }
 }
