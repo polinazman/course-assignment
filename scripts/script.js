@@ -1,23 +1,31 @@
 // refer to question 1 before development starts for scope document
 // connect to this api https://api.magicthegathering.io/v1/cards
 
-var requestURL = 'https://api.magicthegathering.io/v1/cards';
+window.onload = run;
 
-var request = new XMLHttpRequest();
-request.open('GET', requestURL);
+function run(e, name) {
+    var requestURL = 'https://api.magicthegathering.io/v1/cards';
 
-request.responseType = 'json';
+    if (name) {
+        requestURL = requestURL + "?name=\"" + name + "\"";
+    }
 
-request.send();
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
 
-request.onload = (e) => fillPage(request.response);
+    request.responseType = 'json';
+
+    request.send();
+
+    request.onload = (e) => fillPage(request.response);
+}
 
 function fillPage(myObject) {
 
     var urlText = 'card-specific.html?id=';
     myObject.cards.forEach(card => {
 
-        if (card.imageUrl != undefined || card.imageUrl != null) {
+        if (card.imageUrl) {
 
             var cards = document.getElementById("cards");
 
@@ -45,4 +53,20 @@ function fillPage(myObject) {
 
         }
     });
+}
+
+document.getElementById("searchButton").onclick = searchBtn;
+
+function searchBtn(){
+    var resultsArray = [];
+    document.getElementById("cards").innerHTML = "";
+    searchInput = document.getElementById("search").value;
+    run(null, searchInput);
+
+    if (searchInput === true) {
+        resultsArray.push(searchInput);  
+        console.log(resultsArray);
+    } else {
+        
+    }
 }
