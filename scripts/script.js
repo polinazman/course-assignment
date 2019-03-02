@@ -24,9 +24,15 @@ function run(e, name) {
 function fillPage(myObject) {
 
     var urlText = "card-specific.html?id=";
+
+    if(myObject.cards.length < 1) {
+        var cards = document.getElementById("cards");
+        cards.innerHTML = "No results found";
+        return;
+    }
+
     myObject.cards.forEach(card => {
 
-        // if (card.imageUrl) {
         var cards = document.getElementById("cards");
 
         var outerDiv = document.createElement("div");
@@ -54,7 +60,6 @@ function fillPage(myObject) {
         a.setAttribute("src", urlText + card.multiverseid);
         a.setAttribute("class", "btn btn-success");
         innerDiv.appendChild(a);
-        // }
     });
 }
 
