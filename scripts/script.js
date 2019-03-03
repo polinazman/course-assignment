@@ -9,14 +9,10 @@ function makeApiCall(e, name) {
     if (name) {
         requestUrl = requestUrl + "?name=\"" + name + "\"";
     }
-
     var request = new XMLHttpRequest();
     request.open("GET", requestUrl);
-
     request.responseType = "json";
-
     request.send();
-
     request.onload = (e) => fillPage(request.response);
 }
 
@@ -26,7 +22,10 @@ function fillPage(myObject) {
 
     if(myObject.cards.length < 1) {
         var cards = document.getElementById("cards");
-        cards.innerHTML = "No results found";
+        cards.innerHTML = "";
+        var p = document.createElement("p");
+        p.innerText = "No card found";
+        cards.appendChild(p);
         return;
     }
 
