@@ -1,17 +1,17 @@
 // refer to question 1 before development starts for scope document
 // connect to this api https://api.magicthegathering.io/v1/cards
 
-window.onload = run;
+window.onload = makeApiCall;
 
-function run(e, name) {
-    var requestURL = "https://api.magicthegathering.io/v1/cards";
+function makeApiCall(e, name) {
+    var requestUrl = "https://api.magicthegathering.io/v1/cards";
 
     if (name) {
-        requestURL = requestURL + "?name=\"" + name + "\"";
+        requestUrl = requestUrl + "?name=\"" + name + "\"";
     }
 
     var request = new XMLHttpRequest();
-    request.open("GET", requestURL);
+    request.open("GET", requestUrl);
 
     request.responseType = "json";
 
@@ -65,8 +65,7 @@ function fillPage(myObject) {
 document.getElementById("searchButton").onclick = searchBtn;
 
 function searchBtn() {
-    var resultsArray = [];
     document.getElementById("cards").innerHTML = "";
     var searchInput = document.getElementById("search").value;
-    run(null, searchInput);
+    makeApiCall(null, searchInput);
 }
